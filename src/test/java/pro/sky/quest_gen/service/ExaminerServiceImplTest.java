@@ -8,11 +8,11 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import pro.sky.quest_gen.entity.Question;
 import pro.sky.quest_gen.exceptions.NoEnoughQuestionsException;
+import pro.sky.quest_gen.service.api.QuestionService;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
 

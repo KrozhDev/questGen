@@ -5,21 +5,25 @@
 //import pro.sky.quest_gen.exceptions.NoEnoughArgumentsException;
 //import pro.sky.quest_gen.exceptions.NoSuchQuestionException;
 //
-//import java.util.*;
+//import java.util.ArrayList;
+//import java.util.Collection;
+//import java.util.List;
+//import java.util.Random;
 //import java.util.concurrent.ThreadLocalRandom;
 //
-//
 //@Service
-//public class JavaQuestionService implements QuestionService {
+//public class MathQuestionService implements QuestionService {
 //
-//    private List<Question> javaQuestions = new ArrayList<>();
+//
+//    private List<Question> mathQuestions = new ArrayList<>();
+//
 //    @Override
 //    public Question add(String question, String answer) {
 //        if (question == null || answer == null) {
 //            throw new NoEnoughArgumentsException();
 //        }
 //        Question newQuestion = new Question(question, answer);
-//        javaQuestions.add(newQuestion);
+//        mathQuestions.add(newQuestion);
 //        return newQuestion;
 //    }
 //
@@ -28,14 +32,14 @@
 //        if (question == null) {
 //            throw new NoEnoughArgumentsException();
 //        }
-//        javaQuestions.add(question);
+//        mathQuestions.add(question);
 //        return question;
 //    }
 //
 //    @Override
 //    public Question remove(Question question) {
-//        if (javaQuestions.contains(question)) {
-//            javaQuestions.remove(question);
+//        if (mathQuestions.contains(question)) {
+//            mathQuestions.remove(question);
 //        } else {
 //            throw new NoSuchQuestionException();
 //        }
@@ -45,12 +49,12 @@
 //
 //    @Override
 //    public Collection<Question> getAll() {
-//        return javaQuestions;
+//        return mathQuestions;
 //    }
 //
 //    @Override
 //    public Question getRandomQuestion() {
-//        int randomIndex = ThreadLocalRandom.current().nextInt(0, javaQuestions.size());
-//        return javaQuestions.get(randomIndex);
+//        int randomIndex = ThreadLocalRandom.current().nextInt(0, mathQuestions.size());
+//        return mathQuestions.get(randomIndex);
 //    }
 //}

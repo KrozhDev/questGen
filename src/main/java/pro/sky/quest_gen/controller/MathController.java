@@ -11,12 +11,12 @@ import pro.sky.quest_gen.service.api.QuestionService;
 import java.util.Collection;
 
 @RestController
-@RequestMapping("/exam/java/")
-public class JavaController {
+@RequestMapping("/exam/math/")
+public class MathController {
 
     private final QuestionService questionService;
 
-    public JavaController(@Qualifier("javaQuestionService") QuestionService questionService) {
+    public MathController(@Qualifier("mathQuestionService") QuestionService questionService) {
         this.questionService = questionService;
     }
 
@@ -24,12 +24,12 @@ public class JavaController {
     public Question add(@RequestParam("questionText") String questionText,
                         @RequestParam("questionAnswer") String questionAnswer) {
 
-        return questionService.add(questionText, questionAnswer);
+        return questionService.add(questionText,questionAnswer);
     }
 
     @GetMapping("/remove")
     public Question remove(@RequestParam("questionText") String questionText,
-                           @RequestParam("questionAnswer") String questionAnswer) {
+                        @RequestParam("questionAnswer") String questionAnswer) {
 
         Question questionToRemove = new Question(questionText, questionAnswer);
 

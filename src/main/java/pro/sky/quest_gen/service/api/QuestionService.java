@@ -1,4 +1,4 @@
-package pro.sky.quest_gen.service;
+package pro.sky.quest_gen.service.api;
 
 import pro.sky.quest_gen.entity.Question;
 
