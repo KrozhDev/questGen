@@ -1,23 +1,21 @@
 package pro.sky.quest_gen.service;
 
+import org.springframework.stereotype.Service;
 import pro.sky.quest_gen.entity.Question;
 import pro.sky.quest_gen.exceptions.NoEnoughArgumentsException;
-import pro.sky.quest_gen.exceptions.NoSuchQuestionException;
+import pro.sky.quest_gen.repository.QuestionRepository;
 import pro.sky.quest_gen.service.api.QuestionService;
-
 import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
+
 public class QuestionServiceImpl implements QuestionService {
 
+    final private QuestionRepository questionRepository;
 
-
-    final private List<Question> questions;
-
-
-    public QuestionServiceImpl(List<Question> questions) {
-        this.questions = questions;
+    public QuestionServiceImpl(QuestionRepository questionRepository) {
+        this.questionRepository = questionRepository;
     }
 
     @Override
@@ -26,7 +24,7 @@ public class QuestionServiceImpl implements QuestionService {
             throw new NoEnoughArgumentsException();
         }
         Question newQuestion = new Question(question, answer);
-        questions.add(newQuestion);
+        questionRepository.add(newQuestion);
         return newQuestion;
     }
 
@@ -35,27 +33,24 @@ public class QuestionServiceImpl implements QuestionService {
         if (question == null) {
             throw new NoEnoughArgumentsException();
         }
-        questions.add(question);
+        questionRepository.add(question);
         return question;
     }
 
     @Override
     public Question remove(Question question) {
-        if (questions.contains(question)) {
-            questions.remove(question);
-        } else {
-            throw new NoSuchQuestionException();
-        }
+        questionRepository.remove(question);
         return question;
     }
 
     @Override
     public Collection<Question> getAll() {
-        return questions;
+        return questionRepository.getAll();
     }
 
     @Override
     public Question getRandomQuestion() {
+        List<Question> questions = questionRepository.getAll().stream().toList();
         int randomIndex = ThreadLocalRandom.current().nextInt(0, questions.size());
         return questions.get(randomIndex);
     }
