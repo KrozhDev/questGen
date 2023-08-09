@@ -6,6 +6,9 @@ import pro.sky.quest_gen.exceptions.NoSuchQuestionException;
 import java.util.Collection;
 import java.util.List;
 
+
+
+@Repository
 public class QuestionRepositoryImpl implements QuestionRepository {
 
     final private List<Question> questions;
@@ -26,6 +29,11 @@ public class QuestionRepositoryImpl implements QuestionRepository {
         } else {
             throw new NoSuchQuestionException();
         }
+    }
+
+    @Override
+    public boolean contains(Question question) {
+        return questions.contains(question);
     }
 
     @Override

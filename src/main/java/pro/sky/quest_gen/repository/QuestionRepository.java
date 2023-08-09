@@ -10,6 +10,8 @@ public interface QuestionRepository {
 
     void remove(Question question);
 
+    boolean contains(Question question);
+
     Collection<Question> getAll();
 
 }

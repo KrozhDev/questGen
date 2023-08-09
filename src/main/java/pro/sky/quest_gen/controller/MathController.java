@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import pro.sky.quest_gen.entity.Question;
+import pro.sky.quest_gen.service.MathQuestionService;
 import pro.sky.quest_gen.service.api.QuestionService;
 
 import java.util.Collection;
@@ -14,17 +15,17 @@ import java.util.Collection;
 @RequestMapping("/exam/math/")
 public class MathController {
 
-    private final QuestionService questionService;
+    private final MathQuestionService mathQuestionService;
 
-    public MathController(@Qualifier("mathQuestionService") QuestionService questionService) {
-        this.questionService = questionService;
+    public MathController(@Qualifier("math") MathQuestionService mathQuestionService) {
+        this.mathQuestionService = mathQuestionService;
     }
 
     @GetMapping("/add")
     public Question add(@RequestParam("questionText") String questionText,
                         @RequestParam("questionAnswer") String questionAnswer) {
 
-        return questionService.add(questionText,questionAnswer);
+        return mathQuestionService.add(questionText,questionAnswer);
     }
 
     @GetMapping("/remove")
@@ -33,11 +34,11 @@ public class MathController {
 
         Question questionToRemove = new Question(questionText, questionAnswer);
 
-        return questionService.remove(questionToRemove);
+        return mathQuestionService.remove(questionToRemove);
     }
 
     @GetMapping()
     public Collection<Question> getAll() {
-        return questionService.getAll();
+        return mathQuestionService.getAll();
     }
 }

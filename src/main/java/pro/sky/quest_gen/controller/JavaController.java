@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import pro.sky.quest_gen.entity.Question;
+import pro.sky.quest_gen.service.JavaQuestionService;
 import pro.sky.quest_gen.service.api.QuestionService;
 
 import java.util.Collection;
@@ -14,17 +15,17 @@ import java.util.Collection;
 @RequestMapping("/exam/java/")
 public class JavaController {
 
-    private final QuestionService questionService;
+    private final JavaQuestionService javaQuestionService;
 
-    public JavaController(@Qualifier("javaQuestionService") QuestionService questionService) {
-        this.questionService = questionService;
+    public JavaController(@Qualifier("java") JavaQuestionService javaQuestionService) {
+        this.javaQuestionService = javaQuestionService;
     }
 
     @GetMapping("/add")
     public Question add(@RequestParam("questionText") String questionText,
                         @RequestParam("questionAnswer") String questionAnswer) {
 
-        return questionService.add(questionText, questionAnswer);
+        return javaQuestionService.add(questionText, questionAnswer);
     }
 
     @GetMapping("/remove")
@@ -33,11 +34,11 @@ public class JavaController {
 
         Question questionToRemove = new Question(questionText, questionAnswer);
 
-        return questionService.remove(questionToRemove);
+        return javaQuestionService.remove(questionToRemove);
     }
 
     @GetMapping()
     public Collection<Question> getAll() {
-        return questionService.getAll();
+        return javaQuestionService.getAll();
     }
 }

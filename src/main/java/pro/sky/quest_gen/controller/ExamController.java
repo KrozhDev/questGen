@@ -10,18 +10,17 @@ import pro.sky.quest_gen.service.api.ExaminerService;
 import java.util.Collection;
 
 @RestController
-@RequestMapping("/exam/java/") //todo адрес на какой изменить?
+@RequestMapping("/exam")
 public class ExamController {
 
     private final ExaminerService examinerService;
 
-    public ExamController(ExaminerService examinerService, ExaminerService examinerService1) {
-        this.examinerService = examinerService1;
+    public ExamController(ExaminerService examinerService) {
+        this.examinerService = examinerService;
     }
 
-    //todo получать рандомные вопросы по 5 штук от мат и джава
 
-    @GetMapping("/test/")
+    @GetMapping("/test")
     public Collection<Question> test(@RequestParam("amount") int amount) {
         return examinerService.getQuestions(amount);
     }

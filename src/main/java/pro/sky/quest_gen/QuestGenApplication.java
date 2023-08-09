@@ -5,11 +5,10 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Primary;
 import pro.sky.quest_gen.entity.Question;
 import pro.sky.quest_gen.repository.QuestionRepository;
 import pro.sky.quest_gen.repository.QuestionRepositoryImpl;
-import pro.sky.quest_gen.service.api.QuestionService;
-import pro.sky.quest_gen.service.QuestionServiceImpl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +19,7 @@ public class QuestGenApplication {
     final private List<Question> questions = new ArrayList<>();
 
     public static void main(String[] args) {SpringApplication.run(QuestGenApplication.class, args);}
+
 
     @Bean("mathQuestionService")
     public QuestionRepository mathQuestionService(){return new QuestionRepositoryImpl(questions);}
